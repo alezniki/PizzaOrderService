@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pizza Service</title>
+        <link href="./assets/css/bootstrap.css" rel="stylesheet">
+		<link href="./assets/css/font-awesome.css" rel="stylesheet">
+    </head>
+    <body ng-app="test-app">
+        <div class="container-fluid">
+        	<div class="row" ui-view="header"></div>
+        	<div class="row" ui-view="content"></div>
+        </div>
+        
+        <!-- bower_components -->
+		<script src="bower_components/angular/angular.js"></script>  
+		<script src="bower_components/angular-resource/angular-resource.js"></script>  
+        <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+		
+        <!-- app module -->
+        <script src="app/app.module.js"></script>
+        
+        <!-- core components-->
+		<script src="app/components/core/core.module.js"></script>	
+        <script src="app/components/core/core.route.js"></script>
+		<script src="app/components/core/core.init.js"></script>
+        
+        <!-- main components -->
+		<script src="app/components/main/main.module.js"></script>
+        <script src="app/components/main/main.route.js"></script>
+        <script src="app/components/main/main.init.js"></script>
+        <script src="app/components/main/main-list.controller.js"></script>
+        <script src="app/components/main/main-form.controller.js"></script>
+        <script src="app/components/main/main.service.js"></script>
+        <script src="app/components/main/order.service.js"></script>
+    </body>
+</html>

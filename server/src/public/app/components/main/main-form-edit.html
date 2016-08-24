@@ -1,0 +1,79 @@
+ <div class="container-fluid">
+    <!-- <h3>{{mfc.title}}</h3> -->
+    <hr>
+    <form class="form-horizontal" novalidate name="mfc.form">
+        <!-- entity Combobox -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.name.$touched && mfc.form.name.$invalid }">
+            <label class="control-label col-sm-2" for="name">Pizza</label>
+            <div class="col-sm-6 col-md-4">
+                <select class="form-control" id="name" name="name" ng-model="mfc.entity.name">
+                   <option value="{{mfc.entity.name}}">{{mfc.entity.name}}</option>
+                </select>
+                <p>{{mfc.entity.description}}</p>
+            </div>
+        </div>
+        <!-- Size Combobox -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.size.$touched && mfc.form.size.$invalid }">
+            <label class="control-label col-sm-2" for="size">Size</label>
+            <div class="col-sm-6 col-md-4">
+                <select class="form-control" id="size" name="size" ng-model="mfc.newOrder.size">
+                   <option value="">---</option>
+                   <option value="M">M</option>
+                   <option value="L">L</option>
+                   <option value="XL">XL</option>
+                </select>
+            </div>
+        </div>
+        <!-- Comment Txt -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.comment.$touched && mfc.form.comment.$invalid }">
+            <label class="control-label col-sm-2" for="comment">Comment</label>
+            <div class="col-sm-6 col-md-4">
+                <textarea ng-model="mfc.newOrder.comment" id="comment" name="comment" class="form-control"></textarea>
+            </div>
+        </div>
+        <!-- Checkbox -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.delivery.$touched && mfc.form.delivery.$invalid }">
+            <label class="control-label col-sm-2" for="delivery">Delivery</label>
+            <div class="col-sm-6 col-md-4">
+                <input type="checkbox" ng-model="checked" id="delivery" name="delivery" class="form-control" ng-click="mfc.entity.address=null">
+            </div>
+        </div>
+        <!-- Address -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.address.$touched && mfc.form.address.$invalid }">
+            <label class="control-label col-sm-2" for="address">Address</label>
+            <div class="col-sm-6 col-md-4">
+                <input type="text" ng-model="mfc.newOrder.address" id="address" name="address" class="form-control" ng-disabled="!checked">
+            </div>
+        </div>
+        <!-- Telephone -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.phone.$touched && mfc.form.phone.$invalid }">
+            <label class="control-label col-sm-2" for="phone">Telephone</label>
+            <div class="col-sm-6 col-md-4">
+                <input type="text" ng-model="mfc.newOrder.phone" id="phone" name="phone" class="form-control" required>
+                <div ng-messages="mfc.form.phone.$error" ng-show="mfc.form.phone.$touched" ng-class="text-danger">
+                    <p ng-message="required">This field is required.</p>
+                </div>
+            </div>
+        </div>
+        <!-- Surname -->
+        <div class="form-group" ng-class="{ 'has-error': mfc.form.surname.$touched && mfc.form.surname.$invalid }">
+            <label class="control-label col-sm-2" for="surname">Surname</label>
+            <div class="col-sm-6 col-md-4">
+                <input type="text" ng-model="mfc.newOrder.surname" id="surname" name="surname" class="form-control" required minlength="5">
+                <div ng-messages="mfc.form.surname.$error" ng-show="mfc.form.surname.$touched" ng-class="text-danger">
+                    <p ng-message="required">This field is required.</p>
+                    <p ng-message="minlength">This field must contain at least 5 characters.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Buttons -->
+        <div class="col-sm-offset-2">
+            <button type="button" class="btn btn-primary" ng-click="mfc.save()" ng-disabled="mfc.form.$invalid">Confirm Order</button>
+            <button type="button" class="btn btn-warning" ng-click="mfc.revert()">Revert</button> 
+            <button type="button" class="btn btn-danger" ng-click="mfc.remove()">Delete</button>
+            <a class="btn btn-default" ui-sref="main.list"><i class="fa fa-chevron-left"></i> Back</a>
+        </div>
+    </form>
+</div>
+<!-- ng-disabled="mfc.disableRevert" -->

@@ -1,0 +1,49 @@
+<!-- <span ng-repeat="entity in mlc.collection">{{entity|json}}</div -->
+<style>.link{cursor:pointer;}</style>
+<div class="container-fluid">
+    <div class="row gray">
+        <strong>Pizza</strong>
+        <!-- PAGINATION -->
+        <span ng-show="mlc.pagination.page !== 1">
+            <a ng-href aria-label="Previous" ng-click="mlc.pagination.changePage(mlc.pagination.page - 1)">
+                <span aria-hidden="true" class="link">&laquo;Prev</span>
+            </a>
+        </span>
+        <span ng-show="mlc.pagination.page != mlc.pagination.numberOfPages">
+        <a ng-href arial-label="Next" ng-click="mlc.pagination.changePage(mlc.pagination.page + 1)">
+            <span aria-hidden="true" class="link">Next&raquo;</span>
+        </a>
+    </span>
+    <!-- SORT DIRECTION -->
+        <span class="pull-right">
+            <a class="link" ng-href ng-click="mlc.changeDirection('price')">
+            Price
+            <i class="fa fa-sort disabled" ng-hide="mlc.sort == 'price'"></i>
+            <i class="fa fa-sort-desc" ng-show="mlc.sort == 'price' && mlc.sortDirection == 'asc'"></i>     
+            <i class="fa fa-sort-asc" ng-show="mlc.sort == 'price' && mlc.sortDirection == 'desc'"></i>
+            </a>
+            <a class="link" ng-href ng-click="mlc.changeDirection('grade')">
+            Grade
+            <i class="fa fa-sort disabled" ng-hide="mlc.sort == 'grade'"></i>
+            <i class="fa fa-sort-desc" ng-show="mlc.sort == 'grade' && mlc.sortDirection == 'asc'"></i>     
+            <i class="fa fa-sort-asc" ng-show="mlc.sort == 'grade' && mlc.sortDirection == 'desc'"></i>
+            </a>
+        </span>
+    </div>
+
+    <!-- EXTRACT FROM SERVICE -->
+    <div class="row-gray link" ng-repeat="entity in mlc.collection">
+        <h3><a ng-click="mlc.edit(entity._id)">{{entity.name}}</a></h3>
+        <p class="pull-right">
+            <span>{{entity.price}}&euro;</span>
+            <span>{{entity.grade}}/5 </span>
+        </p>
+        <p>{{entity.description|limitTo:150}} {{entity.description.length>150 ? "..." : ""}}</p>
+    </div>
+    <div class="btn-group pull-right" >
+        <label class="btn btn-primary" ng-model="mlc.radioModel" uib-btn-radio="'Left'" ng-click="mlc.updatePage(5)">5</label>
+        <label class="btn btn-primary" ng-model="mlc.radioModel" uib-btn-radio="'Middle'" ng-click="mlc.updatePage(10)">10</label>
+        <label class="btn btn-primary" ng-model="mlc.radioModel" uib-btn-radio="'Right'" ng-click="mlc.updatePage(20)">20</label>
+    </div>
+
+</div>
